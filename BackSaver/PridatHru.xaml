@@ -1,0 +1,45 @@
+﻿<Window x:Class="BackSaver.PridatHru"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BackSaver"
+        mc:Ignorable="d"
+        Title="PridatHru" Height="500" Width="300
+        " Icon="/novy.png">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/hrac.png" Stretch="None" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" />
+
+        <Label Content="_Hra" Grid.Column="0" Grid.Row="1"/>
+        <Label Content="_Exe soubor" Grid.Column="0" Grid.Row="2" />
+        <Label Content="_Save slozka" Grid.Column="0" Grid.Row="3" />
+        <Label Content="_Zaloha slozka" Grid.Column="0" Grid.Row="4" />
+        <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Name="hraTextBox" Margin="0,0,5,5" />
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Name="exeSouborTextBox" Margin="0,0,5,5" />
+        <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Name="saveTextBox" Margin="0,0,5,5" />
+        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Name="zalohaTextBox" Margin="0,0,5,5" />
+        <Button Name="hraButton" Grid.Column="3" Grid.Row="1" Margin="0,0,0,5"/>
+        <Button Name="exeSouborButton" Grid.Column="3" Grid.Row="2" Margin="0,0,0,5"/>
+        <Button Name="saveButton" Grid.Column="3" Grid.Row="3" Margin="0,0,0,5"/>
+        <Button Name="zalohaButton" Grid.Column="3" Grid.Row="4" Margin="0,0,0,5"/>
+
+        <Button Name="okButton" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"
+                HorizontalAlignment="Center" Width="100" VerticalAlignment="Bottom"
+                Content="OK" IsDefault="True" Click="OkButton_Click" />
+    </Grid>
+</Window>

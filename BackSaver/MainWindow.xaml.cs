@@ -54,6 +54,9 @@ namespace BackSaver
             new PridatHru(spravceHer).ShowDialog();
         }
 
-
+        private void aktualBt_Click_1(object sender, RoutedEventArgs e)
+        {
+            spravceHer.AktualHra = (Hra)hryListBox.SelectedItem;
+        }
     }
 }

@@ -67,14 +67,15 @@
                 <TextBlock Name="tb11" Text="tb11" />
                 <TextBlock Name="tb12" Text="tb12" />
             </StackPanel>
-            <StackPanel Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Width="100" Margin="0,0,10,0" Name="pridatButton" Content="Přidat" Click="pridatButton_Click_1" />
-                <Button Width="100" Name="odebratButton" Content="Odebrat" Click="odebratButton_Click_1" />
+            <StackPanel Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="100"  Name="pridatButton" Content="Přidat" Click="pridatButton_Click_1" />
+                <Button Width="100" Margin="0,0,10,0" Name="odebratButton" Content="Odebrat" Click="odebratButton_Click_1" />
+                <Button Width="100" Name="aktualBt" Content="Aktual Hra" Click="aktualBt_Click_1" />
             </StackPanel>
             <StackPanel Grid.Column="9"  Grid.Row="7">
                 <TextBlock Name="tb13" Text="Hra" />
                 <TextBlock Name="tb14" Text="Cesta Exe" />
-                <TextBlock Name="tb15" Text="Save Directory" />
+                <TextBlock Name="tb15" Text="Save Slozka" />
                 <TextBlock Name="tb16" Text="Záloha Cesta" />
             </StackPanel>
             <StackPanel Grid.Column="11" Grid.ColumnSpan="3" Grid.Row="7"

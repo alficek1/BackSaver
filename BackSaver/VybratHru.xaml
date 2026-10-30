@@ -1,0 +1,89 @@
+﻿<Window x:Class="BackSaver.VybratHru"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BackSaver"
+        mc:Ignorable="d"
+        Title="VybratHru" Height="400" Width="600">
+    <DockPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8"/>
+        </Grid.ColumnDefinitions>
+            <Menu Grid.Row="0" Grid.ColumnSpan="5">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New"/>
+                    <MenuItem Header="_Open"/>
+                    <Separator/>
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Edit">
+                    <MenuItem Header="_Cut" />
+                    <MenuItem Header="_Copy" />
+                    <MenuItem Header="_Paste" />
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_About" />
+                </MenuItem>
+            </Menu>
+            <DockPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="5">
+                <ListBox x:Name="hryListBox" ItemsSource="{Binding Hry}" SelectedIndex="0"
+                         SelectedItem="{Binding AktualHra, Mode=TwoWay}"
+                         SelectionChanged="hryListBox_SelectionChanged" />
+            </DockPanel>
+            <StackPanel Grid.Column="1"  Grid.Row="8" Grid.RowSpan="2">
+                <TextBlock Name="tb13" Text="Hra" />
+                <TextBlock Name="tb14" Text="Cesta Exe" />
+                <TextBlock Name="tb15" Text="Save Slozka" />
+                <TextBlock Name="tb16" Text="Záloha Cesta" />
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.ColumnSpan="11" Grid.Row="8" Grid.RowSpan="2"
+                        DataContext="{Binding ElementName=hryListBox,Path=SelectedItem}">
+                <TextBlock Name="tbnazevHry" Text="{Binding NazevHry}" />
+                <TextBlock Name="tbplnaCestaExe" Text="{Binding PlnaCestaExe}" />
+                <TextBlock Name="tbsaveDirHry" Text="{Binding SaveDirHry}" />
+                <TextBlock Name="tbcestaZalohy" Text="{Binding CestaZalohy}" />
+            </StackPanel>
+
+            <StackPanel   Grid.Column="5" Grid.ColumnSpan="5" Grid.Row="1" Orientation="Vertical">
+                <TextBlock Grid.Column="5" Grid.ColumnSpan="2" Name="tb20" Text="Aktualni Hra"/>
+                <TextBlock Grid.Column="7" Name="tbAktual" Text="{Binding AktualHra.NazevHry}" />
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="3" Grid.RowSpan="5" Grid.Column="13" Grid.ColumnSpan="5" Orientation="Vertical" HorizontalAlignment="Center">
+                <Button Width="60" Height="60"  Margin="0,0,0,10" Name="pridatButton" Content="Přidat" Click="pridatButton_Click_1" />
+                <Button Width="60" Height="60" Margin="0,0,0,10" Name="odebratButton" Content="Odebrat" Click="odebratButton_Click_1" />
+                <Button Width="60" Height="60" Name="aktualBt" Content="Aktual Hra" Click="aktualBt_Click_1" />
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

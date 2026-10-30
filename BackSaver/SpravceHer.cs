@@ -3,6 +3,7 @@
 // explicitní using pro diagnostiku CS0053
 using System.ComponentModel;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace BackSaver
@@ -15,7 +16,20 @@ namespace BackSaver
 
         private readonly string cesta = "hry.xml";
 
-        public Hra AktualHra { get; set; }
+        private Hra? aktualHra;
+
+        public Hra? AktualHra
+        {
+            get => aktualHra;
+            set
+            {
+                if (aktualHra == value)
+                    return;
+
+                aktualHra = value;
+                VyvolejZmenu(nameof(AktualHra));
+            }
+        }
 
         public SpravceHer()
         {
@@ -43,31 +57,79 @@ namespace BackSaver
 
         public void Odeber(Hra hra)
         {
+            if (AktualHra == hra)
+                AktualHra = null;
+
             Hry.Remove(hra);
             //NajdiNejblizsi();
         }
 
         public void Uloz()
         {
-            XmlSerializer serializer = new(Hry.GetType());
+            XmlSerializer serializer = new(typeof(UlozenaData));
             using StreamWriter sw = new(cesta);
-            serializer.Serialize(sw, Hry);
+            serializer.Serialize(sw, new UlozenaData
+            {
+                Hry = Hry,
+                AktualHra = AktualHra,
+                AktualHraIndex = AktualHra is null ? null : Hry.IndexOf(AktualHra)
+            });
         }
 
         public void Nacti()
         {
-            XmlSerializer serializer = new(Hry.GetType());
             if (File.Exists(cesta))
             {
-                using StreamReader sr = new(cesta);
-                Hry = (ObservableCollection<Hra>)serializer.Deserialize(sr);
+                using XmlReader reader = XmlReader.Create(cesta);
+                reader.MoveToContent();
+
+                if (reader.LocalName == "ArrayOfHra")
+                {
+                    XmlSerializer legacySerializer = new(typeof(ObservableCollection<Hra>));
+                    Hry = (ObservableCollection<Hra>?)legacySerializer.Deserialize(reader) ?? [];
+                    AktualHra = null;
+                }
+                else
+                {
+                    XmlSerializer serializer = new(typeof(UlozenaData));
+                    UlozenaData? data = (UlozenaData?)serializer.Deserialize(reader);
+                    Hry = data?.Hry ?? [];
+
+                    if (data?.AktualHraIndex is int index && index >= 0 && index < Hry.Count)
+                    {
+                        AktualHra = Hry[index];
+                    }
+                    else if (data?.AktualHra is Hra ulozenaAktualHra)
+                    {
+                        AktualHra = Hry.FirstOrDefault(hra =>
+                            hra.NazevHry == ulozenaAktualHra.NazevHry &&
+                            hra.PlnaCestaExe == ulozenaAktualHra.PlnaCestaExe &&
+                            hra.SaveDirHry == ulozenaAktualHra.SaveDirHry &&
+                            hra.CestaZalohy == ulozenaAktualHra.CestaZalohy);
+                    }
+                    else
+                    {
+                        AktualHra = null;
+                    }
+                }
             }
             else
+            {
                 Hry = [];
+                AktualHra = null;
+            }
 
             //NajdiNejblizsi();
         }
     }
 
+    public class UlozenaData
+    {
+        public ObservableCollection<Hra> Hry { get; set; } = [];
+
+        public Hra? AktualHra { get; set; }
+
+        public int? AktualHraIndex { get; set; }
+    }
 
 }

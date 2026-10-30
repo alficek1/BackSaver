@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="8"/>
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3">
-                <ListBox x:Name="osobyListBox" ItemsSource="{Binding Hry}" />
+                <ListBox x:Name="hryListBox" ItemsSource="{Binding Hry}" SelectedIndex="0" />
             </DockPanel>
             <DockPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="3">
                 <ListBox x:Name="lbox2"  >
@@ -66,30 +66,31 @@
                 <TextBlock Name="tb10" Text="tb10" />
                 <TextBlock Name="tb11" Text="tb11" />
                 <TextBlock Name="tb12" Text="tb12" />
-               
             </StackPanel>
-
             <StackPanel Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Width="100" Margin="0,0,10,0" Name="pridatButton" Content="Přidat" Click="pridatButton_Click_1" />
                 <Button Width="100" Name="odebratButton" Content="Odebrat" Click="odebratButton_Click_1" />
             </StackPanel>
-
-            <StackPanel Grid.Column="9" Grid.ColumnSpan="3" Grid.Row="7" Grid.RowSpan="3" Margin="10, 0, 0, 0" 
-                        DataContext="{Binding ElementName=osobyListBox,Path=SelectedItem}">
-            
-
+            <StackPanel Grid.Column="9"  Grid.Row="7">
+                <TextBlock Name="tb13" Text="Hra" />
+                <TextBlock Name="tb14" Text="Cesta Exe" />
+                <TextBlock Name="tb15" Text="Save Directory" />
+                <TextBlock Name="tb16" Text="Záloha Cesta" />
             </StackPanel>
-
+            <StackPanel Grid.Column="11" Grid.ColumnSpan="3" Grid.Row="7"
+                        DataContext="{Binding ElementName=hryListBox,Path=SelectedItem}">
+                <TextBlock Name="tbnazevHry" Text="{Binding NazevHry}" />
+                <TextBlock Name="tbplnaCestaExe" Text="{Binding PlnaCestaExe}" />
+                <TextBlock Name="tbsaveDirHry" Text="{Binding SaveDirHry}" />
+                <TextBlock Name="tbcestaZalohy" Text="{Binding CestaZalohy}" />
+            </StackPanel>
             <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Grid.RowSpan="3" Orientation="Vertical">
-
                 <TextBlock Name="tb1" Text="tb1"/>
                 <TextBlock Name="tb2" Text="tb2"/>
                 <TextBlock Name="tb3" Text="tb3"/>
                 <TextBlock Name="tb4" Text="tb4"/>
                 <TextBlock Name="tb5" Text="tb5"/>
                 <TextBlock Name="tb6" Text="tb6"/>
-
-
             </StackPanel>
             <DockPanel Grid.Column="13" Grid.Row="1" Grid.RowSpan="3">
                 <Button DockPanel.Dock="Top" Content="btn1" HorizontalAlignment="Left" Name="btn1" VerticalAlignment="Top" Width="75" Height="23" Margin="0,0,0,5" />
@@ -97,12 +98,6 @@
                 <Button DockPanel.Dock="Top" Content="btn3" HorizontalAlignment="Left" Name="btn3" VerticalAlignment="Top" Width="75" Height="23" Margin="0,0,0,5" />
                 <Button DockPanel.Dock="Top" Content="btn4" HorizontalAlignment="Left" Name="btn4" VerticalAlignment="Top" Width="75" Height="23" Margin="0,0,0,5" />
             </DockPanel>
-
-
-
-
-
-
             <Menu Grid.Row="0" Grid.ColumnSpan="2">
                 <MenuItem Header="_File">
                     <MenuItem Header="_New"/>

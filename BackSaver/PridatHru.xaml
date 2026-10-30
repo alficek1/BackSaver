@@ -33,10 +33,16 @@
         <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Name="exeSouborTextBox" Margin="0,0,5,5" />
         <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Name="saveTextBox" Margin="0,0,5,5" />
         <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Name="zalohaTextBox" Margin="0,0,5,5" />
-        <Button Name="hraButton" Grid.Column="3" Grid.Row="1" Margin="0,0,0,5"/>
-        <Button Name="exeSouborButton" Grid.Column="3" Grid.Row="2" Margin="0,0,0,5"/>
-        <Button Name="saveButton" Grid.Column="3" Grid.Row="3" Margin="0,0,0,5"/>
-        <Button Name="zalohaButton" Grid.Column="3" Grid.Row="4" Margin="0,0,0,5"/>
+        
+        <Button Name="exeSouborButton" Grid.Column="3" Grid.Row="2" Margin="0,0,0,5" Click="exeSouborButton_Click">
+            <Image Source="/3 tecky.png"/>
+        </Button>
+        <Button Name="saveButton" Grid.Column="3" Grid.Row="3" Margin="0,0,0,5" Click="saveButton_Click">
+            <Image Source ="/3 tecky.png"/>
+        </Button>
+        <Button Name="zalohaButton" Grid.Column="3" Grid.Row="4" Margin="0,0,0,5" Click="zalohaButton_Click">
+            <Image Source="/3 tecky.png"/>
+        </Button>
 
         <Button Name="okButton" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"
                 HorizontalAlignment="Center" Width="100" VerticalAlignment="Bottom"
